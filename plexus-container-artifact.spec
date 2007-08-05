@@ -45,9 +45,9 @@
 
 Name:           plexus-container-artifact
 Version:        1.0
-Release:        %mkrel 0.a4.2.0.1
+Release:        %mkrel 0.a4.2.0.2
 Epoch:          0
-Summary:        Plexus Archiver Component
+Summary:        Plexus Container Artifact Component
 License:        Apache Software License
 Group:          Development/Java
 URL:            http://plexus.codehaus.org/
