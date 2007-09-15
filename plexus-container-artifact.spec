@@ -45,7 +45,7 @@
 
 Name:           plexus-container-artifact
 Version:        1.0
-Release:        %mkrel 0.a4.2.0.2
+Release:        %mkrel 0.a4.2.0.3
 Epoch:          0
 Summary:        Plexus Container Artifact Component
 License:        Apache Software License
@@ -80,8 +80,6 @@ BuildRequires:  maven-wagon
 %if %{gcj_support}
 #BuildRequires:    gnu-crypto
 BuildRequires:    java-gcj-compat-devel
-Requires(post):   java-gcj-compat
-Requires(postun): java-gcj-compat
 %endif
 Requires:  plexus-container-default 
 Requires:  maven-wagon 
