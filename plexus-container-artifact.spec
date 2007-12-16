@@ -45,7 +45,7 @@
 
 Name:           plexus-container-artifact
 Version:        1.0
-Release:        %mkrel 0.a4.2.0.3
+Release:        %mkrel 0.a4.2.0.4
 Epoch:          0
 Summary:        Plexus Container Artifact Component
 License:        Apache Software License
@@ -61,7 +61,7 @@ Source4:        %{name}-%{version}-jpp-depmap.xml
 Patch0:         plexus-container-artifact-pom_xml.patch
 Patch1:         plexus-container-artifact-DefaultArtifactEnabledContainer.patch
 
-BuildRequires:  jpackage-utils >= 0:1.7.2
+BuildRequires:  java-rpmbuild >= 0:1.7.2
 BuildRequires:  junit >= 0:3.8.1
 BuildRequires:  ant >= 0:1.6
 BuildRequires:  maven2
