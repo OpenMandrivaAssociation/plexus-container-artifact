@@ -89,6 +89,7 @@ Requires(postun):  jpackage-utils >= 0:1.7.2
 %if ! %{gcj_support}
 BuildArch:      noarch
 %endif
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The Plexus project seeks to create end-to-end developer tools for 
