@@ -45,7 +45,7 @@
 
 Name:           plexus-container-artifact
 Version:        1.0
-Release:        %mkrel 0.a4.2.0.4
+Release:        %mkrel 0.a4.2.0.5
 Epoch:          0
 Summary:        Plexus Container Artifact Component
 License:        Apache Software License
