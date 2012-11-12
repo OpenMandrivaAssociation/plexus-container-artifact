@@ -1,0 +1,15 @@
+--- pom.xml.sav	2006-09-18 07:40:54.000000000 +0200
++++ pom.xml	2006-09-18 07:41:54.000000000 +0200
+@@ -1,9 +1,9 @@
+ <project>
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+-    <groupId>org.codehaus.plexus</groupId>
+-    <artifactId>plexus-containers</artifactId>
+-    <version>1.0.4</version>
++    <groupId>JPP/plexus</groupId>
++    <artifactId>plexus</artifactId>
++    <version>2.0.4-JPP</version>
+   </parent>
+   <artifactId>plexus-container-artifact</artifactId>
+   <name>Plexus Artifact-Enabled Container</name>

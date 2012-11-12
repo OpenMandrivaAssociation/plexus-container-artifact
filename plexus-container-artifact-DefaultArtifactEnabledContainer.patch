@@ -1,0 +1,83 @@
+--- src/main/java/org/codehaus/plexus/DefaultArtifactEnabledContainer.java.sav	2005-04-22 07:48:57.000000000 +0200
++++ src/main/java/org/codehaus/plexus/DefaultArtifactEnabledContainer.java	2006-09-18 10:49:22.000000000 +0200
+@@ -29,6 +29,7 @@
+ import org.apache.maven.artifact.factory.DefaultArtifactFactory;
+ import org.apache.maven.artifact.metadata.ArtifactMetadataSource;
+ import org.apache.maven.artifact.repository.ArtifactRepository;
++import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
+ import org.apache.maven.artifact.resolver.ArtifactResolutionException;
+ import org.apache.maven.artifact.resolver.ArtifactResolutionResult;
+ import org.apache.maven.artifact.resolver.ArtifactResolver;
+@@ -101,7 +102,14 @@
+         // TODO: we are being passed in the plugin repository for this, but then later using those to resolve other artifacts.
+         //   the passed in remote repos should be the artifact repositories, and this should be done before the addComponent call...
+         //   (see MNG-229)
++        try
++        {
+         artifactResolver.resolve( component, remoteRepositories, localRepository );
++        }
++        catch ( ArtifactNotFoundException e )
++        {
++            throw new ArtifactEnabledContainerException( "Artifact not found", e );
++        }
+ 
+         realmTmpId++;
+ 
+@@ -169,7 +177,7 @@
+             String componentKey = componentDescriptor.getComponentKey();
+ 
+             // Add a alias for the components in the artifact itself
+-            addRealmAlias( componentKey, realmId );
++            //addRealmAlias( componentKey, realmId );
+ 
+             if ( componentDescriptor.getComponentSetDescriptor().getDependencies() != null )
+             {
+@@ -210,20 +218,29 @@
+                 // phase to prevent duplication entries.
+                 // ----------------------------------------------------------------------
+ 
+-                ArtifactResolutionResult result = artifactResolver.resolveTransitively( artifactsToResolve,
+-                                                                                        remoteRepositories,
+-                                                                                        localRepository, sourceReader,
+-                                                                                        filter );
++                try {
++                    ArtifactResolutionResult result = 
++                    artifactResolver.resolveTransitively( artifactsToResolve,
++                                                          (Artifact)null,
++                                                          localRepository, 
++                                                          remoteRepositories,
++                                                          sourceReader,
++                                                          filter );
+ 
+-                for ( Iterator k = result.getArtifacts().values().iterator(); k.hasNext(); )
+-                {
+-                    Artifact a = (Artifact) k.next();
+-
+-                    if ( filter.include( a ) )
++                    for ( Iterator k = result.getArtifacts().iterator(); k.hasNext(); )
+                     {
+-                        componentRealm.addConstituent( getArtifactUrl( a ) );
++                        Artifact a = (Artifact) k.next();
++
++                        if ( filter.include( a ) )
++                        {
++                            componentRealm.addConstituent( getArtifactUrl( a ) );
++                        }
+                     }
+                 }
++                catch ( ArtifactNotFoundException e )
++                {
++                    throw new ArtifactEnabledContainerException( "Artifact not found", e );
++                }
+             }
+ 
+             // ----------------------------------------------------------------------
+@@ -250,7 +267,7 @@
+                 {
+                     ComponentDescriptor dcd = (ComponentDescriptor) j.next();
+ 
+-                    addRealmAlias( dcd.getComponentKey(), realmId );
++                    //addRealmAlias( dcd.getComponentKey(), realmId );
+                 }
+ 
+                 dependencyComponentsDiscovered = true;
