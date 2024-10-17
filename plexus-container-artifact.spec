@@ -50,7 +50,7 @@ Epoch:          0
 Summary:        Plexus Container Artifact Component
 License:        Apache Software License
 Group:          Development/Java
-URL:            http://plexus.codehaus.org/
+URL:            https://plexus.codehaus.org/
 Source0:        plexus-container-artifact.tar.gz 
 # svn export http://svn.codehaus.org/plexus/trunk/plexus-sandbox/plexus-containers/plexus-container-artifact/
 
